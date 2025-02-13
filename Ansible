@@ -1,0 +1,39 @@
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt update
+sudo apt install ansible
+------------------------------------------------------
+next install one instances...
+
+
+ansible instances set keygen...
+
+ssh-keygen
+cd .ssh/
+ls
+cat id_ed25519.pub
+---------------------------
+copy the code put next instances.
+pwd
+cd .ssh/
+ls
+vi autherized.keys paste code in it ...
+-------------------------------------
+next new instance public ip in ansible cmd...
+ssh ubuntu@(public ip)
+sudo vi /etc/ansible/hosts (should insert the cmd)..
+
+[servers]
+server1 ansible_host=52.66.250.0 (slave-server ip)
+server2 ansible_host=42.46.50.20 (slave-server  ip)
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+ansible -m ping all 
+
+ansible servers -m command -a "free -h"
+
+ansible servers -m command -a "df -h"
+
+ansible -m apt -a "name=apache2 state=present" --become
+
+ansible servers -m command -a "systemctl status apache2" --become
