@@ -34,6 +34,6 @@ ansible servers -m command -a "free -h"
 
 ansible servers -m command -a "df -h"
 
-ansible -m apt -a "name=apache2 state=present" --become
+ansible -m apt -a "name=apache2 state=present" --become (or) ansible servers -m apt -a "name=apache2 state=present update_cache=yes" --become
 
 ansible servers -m command -a "systemctl status apache2" --become
